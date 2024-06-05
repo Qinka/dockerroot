@@ -1,0 +1,52 @@
+
+
+##
+## image setup
+ARG BUILDER_IMAGE='buildroot'
+ARG BUILDER_TAG='latest'
+
+# Builder image, default is debian
+FROM ${BUILDER_IMAGE}:${BUILDER_TAG} as builder
+
+##
+## CONFIG for image
+ARG DOCKERROOT=root
+
+
+# Load docker root
+ADD . /usr/src/dockerroot
+
+##
+## sync source
+ADD ./configs/ /usr/src/buildroot/configs
+ADD ./package/ /usr/src/buildroot/package
+ADD ./skeletons /usr/src/buildroot/system/dockerroot
+ADD ./patch /usr/src/dockerroot-patch
+
+# patching
+RUN \
+    pushd /usr/src/buildroot ; \
+        for PATCH in `ls /usr/src/dockerroot-patch/*.patch`; do \
+            patch -t -p1 -i "${PATCH}"; \
+        done ; \
+    popd
+
+
+##
+## Setup env
+ENV FORCE_UNSAFE_CONFIGURE=1
+
+##
+## Build Buildroot
+RUN set -e; \
+    pushd /usr/src/buildroot; \
+    make $(uname -m)_docker_${DOCKERROOT}_defconfig; \
+    make ; \
+    popd
+RUN set -r; \
+    mkdir -p /rootfs; \
+    tar xvf /usr/src/buildroot/output/images/rootfs.tar -C /rootfs
+
+
+FROM scratch
+COPY --from=builder /rootfs /
