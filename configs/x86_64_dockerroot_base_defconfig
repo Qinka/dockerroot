@@ -1,11 +1,9 @@
-BR2_s390x=y
-BR2_TOOLCHAIN_EXTERNAL=y
-BR2_TOOLCHAIN_EXTERNAL_BOOTLIN_S390X_Z13_GLIBC_STABLE=y
+BR2_x86_64=y
 BR2_BACKUP_SITE="http://sources.buildroot.net"
-BR2_KERNEL_MIRROR="https://mirror.bjtu.edu.cn/kernel/"
-BR2_GNU_MIRROR="http://mirrors.nju.edu.cn/gnu/"
+BR2_KERNEL_MIRROR="https://mirror.nyist.edu.cn/kernel/"
+BR2_GNU_MIRROR="https://mirror.nyist.edu.cn/gnu/"
 BR2_LUAROCKS_MIRROR="https://luarocks.cn"
-BR2_CPAN_MIRROR="http://mirrors.nju.edu.cn/CPAN/"
+BR2_CPAN_MIRROR="https://mirror.nyist.edu.cn/CPAN/"
 BR2_OPTIMIZE_3=y
 BR2_ROOTFS_SKELETON_CUSTOM=y
 BR2_ROOTFS_SKELETON_CUSTOM_PATH="system/dockerroot/default"

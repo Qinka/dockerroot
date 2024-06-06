@@ -10,6 +10,10 @@ FROM ${BUILDER_IMAGE}:${BUILDER_TAG}
 SHELL ["/usr/bin/bash", "-c"]
 
 ##
+## Setup env
+ENV FORCE_UNSAFE_CONFIGURE=1
+
+##
 ## Buildroot version
 ARG BUILDROOT_VERSION=2024.02.2
 ARG BUILDROOT_DOWNLOAD_URL=https://buildroot.org/downloads/buildroot-${BUILDROOT_VERSION}.tar.gz

@@ -12,6 +12,10 @@ FROM ${BUILDER_IMAGE}:${BUILDER_TAG} as builder
 ## CONFIG for image
 ARG DOCKERROOT=root
 
+##
+## Setup env
+ENV FORCE_UNSAFE_CONFIGURE=1
+
 
 # Load docker root
 ADD . /usr/src/dockerroot
@@ -33,14 +37,10 @@ RUN \
 
 
 ##
-## Setup env
-ENV FORCE_UNSAFE_CONFIGURE=1
-
-##
 ## Build Buildroot
 RUN set -e; \
     pushd /usr/src/buildroot; \
-    make $(uname -m)_docker_${DOCKERROOT}_defconfig; \
+    make $(uname -m)_dockerroot_${DOCKERROOT}_defconfig; \
     make ; \
     popd
 RUN set -r; \
