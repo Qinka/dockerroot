@@ -1,0 +1,11 @@
+
+ARG LOONG_DEBIAN_IMAGE='loongcr.lcpu.dev/lcpu/debian'
+ARG LOONG_DEBIAN_TAG='unstable-240513'
+
+FROM ${LOONG_DEBIAN_IMAGE}:${LOONG_DEBIAN_TAG}
+
+##
+## Debian mirrors
+ARG DEBIAN_MRRORS=mirror.sjtu.edu.cn
+
+RUN sed -i "s/mirrors.cloud.tencent.com/${DEBIAN_MRRORS}/g" /etc/apt/sources.list.d/debian.sources
