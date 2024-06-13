@@ -49,6 +49,36 @@ make BUILDROOT_IMAGE=qinka/buildroot BUILDROOT_TAG=unstable DOCKERROOT_IMAGE=qin
 [qinka/dockerroot](https://github.com/qinka/dockerroot) includes patches for loongarch64.
 
 
+
+## Plan
+
+Our next plan includes:
+
+- [ ] Using official debian stable image for building all architecture.
+- [ ] Merge out loongarch port of buildroot into buildroot mainline.
+    > They use mail list for development but not GitHub or something else.
+    > This will result in no way for merging our codes into mainline.
+- [ ] Add more (runtime) images
+    - [ ] For nginx
+    - [ ] For python
+- [ ] Add more (building-time) images
+    - [ ] For C/C++
+    - [ ] For Rust
+    - [ ] For node.js
+- [ ] Support for more architecture
+    - [ ] 神威 SW64
+    > Mainline support for linux kernel, gcc, qemu and other platform.
+    > Please sponsor me a SW64 machine
+- [ ] Testing image on host of all architechure
+    - [x] amd64
+    - [ ] arm64
+    - [ ] riscv64
+    - [ ] loongarch64
+    - [ ] s390x
+    > Please sponsor me a s390x machine
+
+
+
 ## Image Content
 
 ```
